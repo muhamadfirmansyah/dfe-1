@@ -25,3 +25,26 @@ const toggleNavbar = () => {
 
 
 addEventOnElement([navbarToggleBtn, overlay], 'click', toggleNavbar)
+
+
+
+// Paralax Effect on Hero Banner
+
+const parallaxElements = document.querySelectorAll('[data-parallax]')
+
+window.addEventListener('mouseover', event => {
+    for (let i = 0, len = parallaxElements.length; i < len; i++) {
+
+        const speed = Number(parallaxElements[i].dataset.parallaxSpeed);
+
+        const movementX = (event.clientX / window.innerWidth) * speed;
+        
+        const movementY = (event.clientY / window.innerHeight) * speed;
+
+
+        parallaxElements[i].animate({
+            transform: `translate(${movementX}px, ${movementY}px)`
+        }, { duration: 500, fill: 'forwards', delay: 0 })
+
+    }
+});
